@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:contert="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--1.扫描service下的包-->
+    <contert:component-scan base-package="waiting.service"/>
+
+    <!--2.将所有业务类注入Spring，注解或配置实现-->
+    <bean id="booksServiceImpl" class="waiting.service.BooksServiceImpl">
+        <property name="bookMapper" ref="bookMapper"></property>
+    </bean>
+
+    <!--3.声明式 事务配置-->
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--4.Aop事务支持-->
+
+</beans>
